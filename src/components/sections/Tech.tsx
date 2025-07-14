@@ -23,12 +23,7 @@ const Tech = () => {
     return colors[category as keyof typeof colors] || (darkMode ? "from-gray-400/20 to-gray-400/20" : "from-gray-100 to-gray-100");
   };
 
-  const getTechCategory = (techName: string): string => {
-    for (const [category, techs] of Object.entries(categories)) {
-      if (techs.includes(techName)) return category;
-    }
-    return "Tools";
-  };
+
 
   return (
     <section className={`relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${darkMode ? 'bg-black' : 'bg-gray-50'
