@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { experiences } from "../../constants";
 import { SectionWrapper } from "../../hoc";
@@ -37,16 +36,16 @@ const ExperienceItem = ({
           }`} />
         {/* Point de timeline */}
         <div className={`w-3 h-3 rounded-full transition-all duration-500 ${darkMode
-            ? 'bg-white/40 group-hover:bg-white/80 group-hover:shadow-lg group-hover:shadow-white/50'
-            : 'bg-gray-400 group-hover:bg-gray-600 group-hover:shadow-md'
+          ? 'bg-white/40 group-hover:bg-white/80 group-hover:shadow-lg group-hover:shadow-white/50'
+          : 'bg-gray-400 group-hover:bg-gray-600 group-hover:shadow-md'
           }`} />
       </div>
 
       {/* Carte d'expérience redesignée */}
       <div
         className={`w-full lg:max-w-[75%] p-8 transition-all duration-700 ease-out group-hover:-translate-y-2 ${darkMode
-            ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
-            : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
+          ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
+          : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
           }`}
         style={{
           borderRadius: "24px",
@@ -59,8 +58,8 @@ const ExperienceItem = ({
       >
         {/* Glow effect subtil */}
         <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 ${darkMode
-            ? 'bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5'
-            : 'bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80'
+          ? 'bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5'
+          : 'bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80'
           }`} style={{ borderRadius: "24px" }} />
 
         {/* Header avec icon */}
@@ -94,8 +93,8 @@ const ExperienceItem = ({
 
         {/* Separator line */}
         <div className={`w-full h-px mb-8 transition-all duration-500 ${darkMode
-            ? 'bg-gradient-to-r from-white/10 via-white/20 to-white/10 group-hover:from-white/20 group-hover:via-white/40 group-hover:to-white/20'
-            : 'bg-gradient-to-r from-gray-200/50 via-gray-300 to-gray-200/50 group-hover:from-gray-300 group-hover:via-gray-400 group-hover:to-gray-300'
+          ? 'bg-gradient-to-r from-white/10 via-white/20 to-white/10 group-hover:from-white/20 group-hover:via-white/40 group-hover:to-white/20'
+          : 'bg-gradient-to-r from-gray-200/50 via-gray-300 to-gray-200/50 group-hover:from-gray-300 group-hover:via-gray-400 group-hover:to-gray-300'
           }`} />
 
         {/* Points d'expérience */}
@@ -109,8 +108,8 @@ const ExperienceItem = ({
               className="flex items-start gap-4 group/item"
             >
               <div className={`w-2 h-2 rounded-full mt-2.5 flex-shrink-0 transition-all duration-300 ${darkMode
-                  ? 'bg-gradient-to-r from-blue-400 to-purple-400 group-hover:shadow-lg group-hover:shadow-blue-400/50'
-                  : 'bg-gradient-to-r from-blue-500 to-purple-500 group-hover:shadow-md group-hover:shadow-blue-400/30'
+                ? 'bg-gradient-to-r from-blue-400 to-purple-400 group-hover:shadow-lg group-hover:shadow-blue-400/50'
+                : 'bg-gradient-to-r from-blue-500 to-purple-500 group-hover:shadow-md group-hover:shadow-blue-400/30'
                 }`} />
               <p className={`text-base leading-relaxed font-light transition-colors duration-500 ${darkMode ? 'text-white/80 group-hover:text-white/95' : 'text-gray-700 group-hover:text-gray-800'
                 }`}>
@@ -151,8 +150,8 @@ const Experience = () => {
           >
             {/* Badge de statut */}
             <div className={`inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border transition-colors duration-500 ${darkMode
-                ? 'bg-white/5 border-white/10 text-white/70'
-                : 'bg-white border-gray-200 text-gray-600'
+              ? 'bg-white/5 border-white/10 text-white/70'
+              : 'bg-white border-gray-200 text-gray-600'
               }`}>
               <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-400/60' : 'bg-blue-500'
                 }`}>
@@ -189,8 +188,8 @@ const Experience = () => {
         {/* Décoration finale */}
         <div className="mt-20">
           <div className={`h-px ${darkMode
-              ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
-              : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
+            ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
+            : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
             }`} />
         </div>
       </div>

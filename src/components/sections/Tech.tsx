@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { SectionWrapper } from "../../hoc";
 import { technologies } from "../../constants";
@@ -46,8 +45,8 @@ const Tech = () => {
           >
             {/* Badge de technologies */}
             <div className={`inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border transition-colors duration-500 ${darkMode
-                ? 'bg-white/5 border-white/10 text-white/70'
-                : 'bg-white border-gray-200 text-gray-600'
+              ? 'bg-white/5 border-white/10 text-white/70'
+              : 'bg-white border-gray-200 text-gray-600'
               }`}>
               <div className="flex gap-1">
                 {[...Array(3)].map((_, i) => (
@@ -123,8 +122,8 @@ const Tech = () => {
                       >
                         <div
                           className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center transition-all duration-500 cursor-pointer ${darkMode
-                              ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
-                              : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
+                            ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
+                            : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
                             }`}
                           style={{
                             backdropFilter: "blur(40px)",
@@ -146,8 +145,8 @@ const Tech = () => {
 
                           {/* Tooltip moderne */}
                           <div className={`absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 px-3 py-2 rounded-xl text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none ${darkMode
-                              ? 'bg-white/90 text-gray-900 border border-white/20'
-                              : 'bg-gray-900/90 text-white border border-gray-700/20'
+                            ? 'bg-white/90 text-gray-900 border border-white/20'
+                            : 'bg-gray-900/90 text-white border border-gray-700/20'
                             }`}
                             style={{
                               backdropFilter: "blur(20px)",
@@ -203,8 +202,8 @@ const Tech = () => {
                   >
                     <div
                       className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center transition-all duration-500 cursor-pointer ${darkMode
-                          ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
-                          : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
+                        ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
+                        : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
                         }`}
                       style={{
                         backdropFilter: "blur(40px)",
@@ -221,8 +220,8 @@ const Tech = () => {
                       />
 
                       <div className={`absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 px-3 py-2 rounded-xl text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none ${darkMode
-                          ? 'bg-white/90 text-gray-900 border border-white/20'
-                          : 'bg-gray-900/90 text-white border border-gray-700/20'
+                        ? 'bg-white/90 text-gray-900 border border-white/20'
+                        : 'bg-gray-900/90 text-white border border-gray-700/20'
                         }`}
                         style={{
                           backdropFilter: "blur(20px)",
@@ -242,8 +241,8 @@ const Tech = () => {
         {/* Décoration finale */}
         <div className="mt-20">
           <div className={`h-px ${darkMode
-              ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
-              : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
+            ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
+            : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
             }`} />
         </div>
       </div>
