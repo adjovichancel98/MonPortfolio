@@ -43,8 +43,8 @@ const About = () => {
           >
             {/* Badge de présentation */}
             <div className={`inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border transition-colors duration-500 ${darkMode
-                ? 'bg-white/5 border-white/10 text-white/70'
-                : 'bg-white border-gray-200 text-gray-600'
+              ? 'bg-white/5 border-white/10 text-white/70'
+              : 'bg-white border-gray-200 text-gray-600'
               }`}>
               <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-green-400/60' : 'bg-green-500'
                 }`}>
@@ -75,8 +75,8 @@ const About = () => {
             <div className="relative group">
               <div
                 className={`w-80 h-80 overflow-hidden transition-all duration-700 group-hover:-translate-y-2 ${darkMode
-                    ? 'bg-white/[0.03] border border-white/[0.08]'
-                    : 'bg-white/70 border border-gray-200/60'
+                  ? 'bg-white/[0.03] border border-white/[0.08]'
+                  : 'bg-white/70 border border-gray-200/60'
                   }`}
                 style={{
                   borderRadius: "32px",
@@ -95,15 +95,15 @@ const About = () => {
 
                 {/* Overlay minimaliste */}
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${darkMode
-                    ? 'bg-gradient-to-t from-black/10 to-transparent'
-                    : 'bg-gradient-to-t from-white/20 to-transparent'
+                  ? 'bg-gradient-to-t from-black/10 to-transparent'
+                  : 'bg-gradient-to-t from-white/20 to-transparent'
                   }`} />
               </div>
 
               {/* Indicateur de statut */}
               <div className={`absolute top-6 right-6 w-4 h-4 rounded-full border-2 transition-all duration-500 ${darkMode
-                  ? 'bg-green-400 border-white/20 shadow-lg shadow-green-400/50'
-                  : 'bg-green-500 border-white shadow-md'
+                ? 'bg-green-400 border-white/20 shadow-lg shadow-green-400/50'
+                : 'bg-green-500 border-white shadow-md'
                 }`}>
                 <div className={`absolute inset-0 rounded-full animate-ping ${darkMode ? 'bg-green-400/60' : 'bg-green-500/60'
                   }`} />
@@ -119,8 +119,8 @@ const About = () => {
             {/* Description principale */}
             <div
               className={`p-8 transition-all duration-500 ${darkMode
-                  ? 'bg-white/[0.02] border border-white/[0.06]'
-                  : 'bg-white/60 border border-gray-200/50'
+                ? 'bg-white/[0.02] border border-white/[0.06]'
+                : 'bg-white/60 border border-gray-200/50'
                 }`}
               style={{
                 borderRadius: "24px",
@@ -158,8 +158,8 @@ const About = () => {
                   <div
                     key={index}
                     className={`w-2 h-2 rounded-full transition-all duration-500 ${index === currentIndex
-                        ? darkMode ? 'bg-white w-8' : 'bg-gray-800 w-8'
-                        : darkMode ? 'bg-white/30' : 'bg-gray-300'
+                      ? darkMode ? 'bg-white w-8' : 'bg-gray-800 w-8'
+                      : darkMode ? 'bg-white/30' : 'bg-gray-300'
                       }`}
                   />
                 ))}
@@ -199,8 +199,8 @@ const About = () => {
                 transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
                 whileHover={{ scale: 1.05, y: -4 }}
                 className={`group relative p-6 text-center transition-all duration-300 cursor-pointer ${darkMode
-                    ? 'bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04]'
-                    : 'bg-white/60 border border-gray-200/50 hover:bg-white/80'
+                  ? 'bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04]'
+                  : 'bg-white/60 border border-gray-200/50 hover:bg-white/80'
                   }`}
                 style={{
                   borderRadius: "20px",
@@ -224,8 +224,8 @@ const About = () => {
         {/* Décoration finale */}
         <div className="mt-20">
           <div className={`h-px ${darkMode
-              ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
-              : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
+            ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
+            : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
             }`} />
         </div>
       </div>

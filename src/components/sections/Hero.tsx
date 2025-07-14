@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useDarkMode } from "./DarkModeContext";
 
 const Hero = () => {
@@ -74,7 +74,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {['À propos', 'Projets', 'Contact'].map((item, index) => (
+            {['À propos', 'Projets', 'Contact'].map((item,) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace('à propos', 'about')}`}

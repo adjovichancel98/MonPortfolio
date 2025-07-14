@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "../../constants";
-import { logo } from "../../assets";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../sections/DarkModeContext"; // ✅ Chemin corrigé
 
@@ -35,10 +34,10 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 z-50 w-full transition-all duration-500 ${scrolled
-            ? darkMode
-              ? "bg-black/80 border-b border-white/[0.08]"
-              : "bg-white/80 border-b border-gray-200/50"
-            : "bg-transparent"
+          ? darkMode
+            ? "bg-black/80 border-b border-white/[0.08]"
+            : "bg-white/80 border-b border-gray-200/50"
+          : "bg-transparent"
           }`}
         style={{
           backdropFilter: scrolled ? "blur(40px)" : "none",
@@ -53,8 +52,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${darkMode
-                  ? 'bg-white/10 group-hover:bg-white/15'
-                  : 'bg-gray-900 group-hover:bg-gray-800'
+                ? 'bg-white/10 group-hover:bg-white/15'
+                : 'bg-gray-900 group-hover:bg-gray-800'
                 }`}
             >
               <span className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-white'
@@ -71,8 +70,8 @@ const Navbar = () => {
           {/* Navigation desktop */}
           <nav className="hidden lg:flex items-center">
             <div className={`flex items-center gap-1 p-1 rounded-2xl transition-all duration-300 ${darkMode
-                ? 'bg-white/[0.06] border border-white/[0.12]'
-                : 'bg-gray-100/80 border border-gray-200/60'
+              ? 'bg-white/[0.06] border border-white/[0.12]'
+              : 'bg-gray-100/80 border border-gray-200/60'
               }`}
               style={{
                 backdropFilter: "blur(20px)",
@@ -87,20 +86,20 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.3 }}
                   className={`relative text-sm px-6 py-3 rounded-xl font-medium transition-all duration-500 cursor-pointer ${active === nav.id
-                      ? darkMode
-                        ? "text-black"
-                        : "text-white"
-                      : darkMode
-                        ? "text-white/70 hover:text-white/90"
-                        : "text-gray-600 hover:text-gray-900"
+                    ? darkMode
+                      ? "text-black"
+                      : "text-white"
+                    : darkMode
+                      ? "text-white/70 hover:text-white/90"
+                      : "text-gray-600 hover:text-gray-900"
                     }`}
                 >
                   {active === nav.id && (
                     <motion.div
                       layoutId="activeNavTab"
                       className={`absolute inset-0 rounded-xl shadow-lg ${darkMode
-                          ? 'bg-white'
-                          : 'bg-gray-900'
+                        ? 'bg-white'
+                        : 'bg-gray-900'
                         }`}
                       initial={false}
                       transition={{
@@ -130,8 +129,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`relative p-3 rounded-2xl transition-all duration-300 ${darkMode
-                  ? 'bg-white/[0.06] border border-white/[0.12] text-white/80 hover:text-white'
-                  : 'bg-gray-100/80 border border-gray-200/60 text-gray-600 hover:text-gray-900'
+                ? 'bg-white/[0.06] border border-white/[0.12] text-white/80 hover:text-white'
+                : 'bg-gray-100/80 border border-gray-200/60 text-gray-600 hover:text-gray-900'
                 }`}
               style={{
                 backdropFilter: "blur(20px)",
@@ -154,8 +153,8 @@ const Navbar = () => {
 
               {/* Glow effect */}
               <div className={`absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300 ${darkMode
-                  ? 'bg-gradient-to-r from-yellow-400/10 to-orange-400/10'
-                  : 'bg-gradient-to-r from-blue-400/10 to-purple-400/10'
+                ? 'bg-gradient-to-r from-yellow-400/10 to-orange-400/10'
+                : 'bg-gradient-to-r from-blue-400/10 to-purple-400/10'
                 }`} />
             </motion.button>
           </nav>
@@ -168,8 +167,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`p-2 rounded-lg transition-all duration-300 ${darkMode
-                  ? 'text-white/70 hover:text-white hover:bg-white/10'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                ? 'text-white/70 hover:text-white hover:bg-white/10'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
             >
               {darkMode ? "☀️" : "🌙"}
@@ -181,8 +180,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`p-2 rounded-lg transition-all duration-300 ${darkMode
-                  ? 'text-white/70 hover:text-white hover:bg-white/10'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                ? 'text-white/70 hover:text-white hover:bg-white/10'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
             >
               <div className="w-6 h-6 flex flex-col justify-center space-y-1">
@@ -223,8 +222,8 @@ const Navbar = () => {
               exit={{ x: "100%" }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               className={`absolute right-0 top-0 h-full w-80 max-w-[85vw] ${darkMode
-                  ? 'bg-black/95 border-l border-white/10'
-                  : 'bg-white/95 border-l border-gray-200'
+                ? 'bg-black/95 border-l border-white/10'
+                : 'bg-white/95 border-l border-gray-200'
                 }`}
               style={{
                 backdropFilter: "blur(40px)",
@@ -242,8 +241,8 @@ const Navbar = () => {
                   <button
                     onClick={() => setMobileMenuOpen(false)}
                     className={`p-2 rounded-lg transition-colors ${darkMode
-                        ? 'text-white/70 hover:text-white hover:bg-white/10'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                      ? 'text-white/70 hover:text-white hover:bg-white/10'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                       }`}
                   >
                     ✕
@@ -264,20 +263,20 @@ const Navbar = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 + 0.2 }}
                       className={`relative block px-4 py-4 rounded-2xl font-medium transition-all duration-300 group ${active === nav.id
-                          ? darkMode
-                            ? "text-black"
-                            : "text-white"
-                          : darkMode
-                            ? "text-white/70 hover:text-white"
-                            : "text-gray-600 hover:text-gray-900"
+                        ? darkMode
+                          ? "text-black"
+                          : "text-white"
+                        : darkMode
+                          ? "text-white/70 hover:text-white"
+                          : "text-gray-600 hover:text-gray-900"
                         }`}
                     >
                       {active === nav.id && (
                         <motion.div
                           layoutId="activeMobileTab"
                           className={`absolute inset-0 rounded-2xl ${darkMode
-                              ? 'bg-white shadow-lg'
-                              : 'bg-gray-900 shadow-lg'
+                            ? 'bg-white shadow-lg'
+                            : 'bg-gray-900 shadow-lg'
                             }`}
                           initial={false}
                           transition={{
@@ -306,8 +305,8 @@ const Navbar = () => {
 
                       {/* Glow effect au survol */}
                       <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${active !== nav.id ? (darkMode
-                          ? 'bg-white/5'
-                          : 'bg-gray-100/80') : ''
+                        ? 'bg-white/5'
+                        : 'bg-gray-100/80') : ''
                         }`} />
                     </motion.a>
                   ))}

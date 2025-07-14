@@ -35,8 +35,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
     >
       <div
         className={`relative h-full overflow-hidden transition-all duration-700 ease-out ${darkMode
-            ? 'bg-white/[0.02] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/20'
-            : 'bg-white/60 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
+          ? 'bg-white/[0.02] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/20'
+          : 'bg-white/60 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
           }`}
         style={{
           borderRadius: "24px",
@@ -49,8 +49,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
       >
         {/* Subtle glow effect */}
         <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 ${darkMode
-            ? 'bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5'
-            : 'bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80'
+          ? 'bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5'
+          : 'bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80'
           }`} style={{ borderRadius: "24px" }} />
 
         {/* Floating indicator */}
@@ -73,8 +73,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
           {/* Minimal overlay */}
           <div className={`absolute inset-0 transition-opacity duration-700 ${darkMode
-              ? 'bg-gradient-to-t from-black/20 via-transparent to-transparent'
-              : 'bg-gradient-to-t from-white/10 via-transparent to-transparent'
+            ? 'bg-gradient-to-t from-black/20 via-transparent to-transparent'
+            : 'bg-gradient-to-t from-white/10 via-transparent to-transparent'
             }`} />
         </div>
 
@@ -82,8 +82,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
         <div className="p-8">
           {/* Title with minimal spacing */}
           <h3 className={`text-2xl font-light mb-4 transition-colors duration-500 tracking-tight ${darkMode
-              ? 'text-white/90 group-hover:text-white'
-              : 'text-gray-900 group-hover:text-gray-800'
+            ? 'text-white/90 group-hover:text-white'
+            : 'text-gray-900 group-hover:text-gray-800'
             }`}>
             {project.name}
           </h3>
@@ -103,8 +103,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + tagIndex * 0.1 }}
                 className={`px-4 py-2 text-xs font-medium tracking-wide transition-all duration-300 ${darkMode
-                    ? 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white/90'
-                    : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100 hover:text-gray-700'
+                  ? 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white/90'
+                  : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100 hover:text-gray-700'
                   }`}
                 style={{ borderRadius: "12px" }}
               >
@@ -115,8 +115,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
           {/* Minimal CTA */}
           <div className={`flex items-center gap-3 text-sm font-medium transition-all duration-500 ${darkMode
-              ? 'text-white/50 group-hover:text-white/90'
-              : 'text-gray-500 group-hover:text-gray-900'
+            ? 'text-white/50 group-hover:text-white/90'
+            : 'text-gray-500 group-hover:text-gray-900'
             }`}>
             <span className="tracking-wide">Explorer</span>
             <div className="w-6 h-px bg-current transition-all duration-500 group-hover:w-8" />
@@ -138,8 +138,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
         {/* Subtle bottom accent */}
         <div className={`absolute bottom-0 left-8 right-8 h-px transition-opacity duration-700 opacity-0 group-hover:opacity-100 ${darkMode
-            ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
-            : 'bg-gradient-to-r from-transparent via-gray-300/50 to-transparent'
+          ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
+          : 'bg-gradient-to-r from-transparent via-gray-300/50 to-transparent'
           }`} />
       </div>
     </motion.div>
@@ -161,8 +161,8 @@ const Projects = () => {
           className="text-center"
         >
           <div className={`inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border transition-colors duration-500 ${darkMode
-              ? 'bg-white/5 border-white/10 text-white/70'
-              : 'bg-gray-50 border-gray-200 text-gray-600'
+            ? 'bg-white/5 border-white/10 text-white/70'
+            : 'bg-gray-50 border-gray-200 text-gray-600'
             }`}>
             <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-green-400/60' : 'bg-green-500'
               }`}>
@@ -203,8 +203,8 @@ const Projects = () => {
       {/* Bottom decoration */}
       <div className="max-w-6xl mx-auto mt-20">
         <div className={`h-px ${darkMode
-            ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
-            : 'bg-gradient-to-r from-transparent via-gray-300 to-transparent'
+          ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
+          : 'bg-gradient-to-r from-transparent via-gray-300 to-transparent'
           }`} />
       </div>
     </section>
