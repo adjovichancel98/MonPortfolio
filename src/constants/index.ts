@@ -223,9 +223,9 @@ const testimonials: TTestimonial[] = [
 
 const projects: TProject[] = [
   {
-    name: "Car Rent",
+    name: "MiniERP.BJ+",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      " ERP local simplifié destiné aux TPE et boutiques de quartier, pour une gestion facile du stock, des ventes, des clients et des reçus. ",
     tags: [
       {
         name: "react",
