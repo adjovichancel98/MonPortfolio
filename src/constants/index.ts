@@ -244,9 +244,9 @@ const projects: TProject[] = [
     sourceCodeLink: "https://github.com/adjovichancel98/MonPortfolio.git",
   },
   {
-    name: "Job IT",
+    name: "Vibefy",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "un redesign de l'application Spotify avec des fonctionnalités améliorées pour une expérience utilisateur optimale.",
     tags: [
       {
         name: "react",
