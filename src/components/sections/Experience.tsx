@@ -1,123 +1,295 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { experiences } from "../../constants";
 import { SectionWrapper } from "../../hoc";
 import { useDarkMode } from "./DarkModeContext";
 
-const ExperienceItem = ({
+const ExperienceCard = ({
   experience,
   index,
+  isLast
 }: {
   experience: any;
   index: number;
+  isLast: boolean;
 }) => {
   const { darkMode } = useDarkMode();
-  const isEven = index % 2 === 0;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.9, 1, 1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
 
   return (
     <motion.div
-      className={`flex flex-col lg:flex-row ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-        } items-start gap-8 lg:gap-12 w-full group`}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.15,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }}
-      viewport={{ once: true }}
+      ref={cardRef}
+      style={{ opacity, scale, y }}
+      className="relative mb-24 last:mb-0"
     >
-      {/* Timeline élégante */}
-      <div className="flex flex-col items-center min-w-[120px] lg:min-w-[140px]">
-        <div className={`text-sm font-light tracking-wide transition-colors duration-500 ${darkMode ? 'text-white/80 group-hover:text-white' : 'text-gray-600 group-hover:text-gray-800'
-          }`}>
-          {experience.date}
-        </div>
-        <div className={`w-px h-24 mt-4 transition-all duration-500 ${darkMode ? 'bg-white/20 group-hover:bg-white/40' : 'bg-gray-300 group-hover:bg-gray-400'
-          }`} />
-        {/* Point de timeline */}
-        <div className={`w-3 h-3 rounded-full transition-all duration-500 ${darkMode
-          ? 'bg-white/40 group-hover:bg-white/80 group-hover:shadow-lg group-hover:shadow-white/50'
-          : 'bg-gray-400 group-hover:bg-gray-600 group-hover:shadow-md'
-          }`} />
-      </div>
+      {/* Vertical Line Connector (sauf pour le dernier) */}
+      {!isLast && (
+        <div
+          className={`absolute left-6 top-0 bottom-0 w-[1px] translate-y-full ${darkMode ? "bg-white/5" : "bg-gray-200"
+            }`}
+          style={{ height: "100px" }}
+        />
+      )}
 
-      {/* Carte d'expérience redesignée */}
-      <div
-        className={`w-full lg:max-w-[75%] p-8 transition-all duration-700 ease-out group-hover:-translate-y-2 ${darkMode
-          ? 'bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/15'
-          : 'bg-white/70 border border-gray-200/60 hover:bg-white hover:border-gray-300/80'
-          }`}
-        style={{
-          borderRadius: "24px",
-          backdropFilter: "blur(40px)",
-          WebkitBackdropFilter: "blur(40px)",
-          boxShadow: darkMode
-            ? "0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05)"
-            : "0 8px 32px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.8)",
-        }}
-      >
-        {/* Glow effect subtil */}
-        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 ${darkMode
-          ? 'bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5'
-          : 'bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-pink-50/80'
-          }`} style={{ borderRadius: "24px" }} />
+      <div className="flex gap-8">
+        {/* Timeline Indicator */}
+        <div className="flex-shrink-0">
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              delay: index * 0.1
+            }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Outer Ring */}
+            <div
+              className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode
+                ? "bg-white/5 ring-1 ring-white/10"
+                : "bg-gray-50 ring-1 ring-gray-200"
+                }`}
+            >
+              {/* Inner Dot with Glow */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.8, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className={`w-4 h-4 rounded-full ${index === 0
+                  ? "bg-green-400 shadow-[0_0_20px_rgba(74,222,128,0.5)]"
+                  : index === 1
+                    ? "bg-blue-400 shadow-[0_0_20px_rgba(96,165,250,0.5)]"
+                    : index === 2
+                      ? "bg-purple-400 shadow-[0_0_20px_rgba(192,132,252,0.5)]"
+                      : "bg-orange-400 shadow-[0_0_20px_rgba(251,146,60,0.5)]"
+                  }`}
+              />
+            </div>
 
-        {/* Header avec icon */}
-        <div className="flex items-start gap-6 mb-8 relative z-10">
-          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 ${darkMode ? 'bg-white/10 shadow-lg' : 'bg-white shadow-md border border-gray-100'
-            }`}>
-            {/* Glow derrière l'icône */}
-            <div className={`absolute inset-0 rounded-2xl blur-sm opacity-50 transition-opacity duration-500 ${darkMode ? 'bg-white group-hover:opacity-70' : 'bg-blue-100 group-hover:opacity-80'
-              }`} />
-            <img
-              src={experience.icon}
-              alt={experience.companyName}
-              className="relative w-8 h-8 object-contain"
-              style={{
-                filter: darkMode ? "brightness(0) invert(1)" : "none",
-              }}
-            />
-          </div>
-
-          <div className="flex-1 pt-1">
-            <h3 className={`text-2xl font-light leading-tight mb-2 transition-colors duration-500 tracking-tight ${darkMode ? 'text-white/95 group-hover:text-white' : 'text-gray-900 group-hover:text-gray-800'
-              }`}>
-              {experience.title}
-            </h3>
-            <p className={`text-base font-light transition-colors duration-500 ${darkMode ? 'text-white/60 group-hover:text-white/80' : 'text-gray-600 group-hover:text-gray-700'
-              }`}>
-              {experience.companyName}
-            </p>
-          </div>
-        </div>
-
-        {/* Separator line */}
-        <div className={`w-full h-px mb-8 transition-all duration-500 ${darkMode
-          ? 'bg-gradient-to-r from-white/10 via-white/20 to-white/10 group-hover:from-white/20 group-hover:via-white/40 group-hover:to-white/20'
-          : 'bg-gradient-to-r from-gray-200/50 via-gray-300 to-gray-200/50 group-hover:from-gray-300 group-hover:via-gray-400 group-hover:to-gray-300'
-          }`} />
-
-        {/* Points d'expérience */}
-        <div className="space-y-4 relative z-10">
-          {experience.points.map((point: string, idx: number) => (
+            {/* Year Badge */}
             <motion.div
-              key={idx}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 + idx * 0.1 }}
-              className="flex items-start gap-4 group/item"
+              transition={{ delay: 0.2 + index * 0.1 }}
+              viewport={{ once: true }}
+              className="absolute -left-2 top-14 whitespace-nowrap"
             >
-              <div className={`w-2 h-2 rounded-full mt-2.5 flex-shrink-0 transition-all duration-300 ${darkMode
-                ? 'bg-gradient-to-r from-blue-400 to-purple-400 group-hover:shadow-lg group-hover:shadow-blue-400/50'
-                : 'bg-gradient-to-r from-blue-500 to-purple-500 group-hover:shadow-md group-hover:shadow-blue-400/30'
-                }`} />
-              <p className={`text-base leading-relaxed font-light transition-colors duration-500 ${darkMode ? 'text-white/80 group-hover:text-white/95' : 'text-gray-700 group-hover:text-gray-800'
-                }`}>
-                {point}
-              </p>
+              <div
+                className={`text-[10px] uppercase tracking-[0.25em] font-medium ${darkMode ? "text-white/30" : "text-gray-400"
+                  }`}
+              >
+                {experience.date.split(" - ")[0]}
+              </div>
             </motion.div>
-          ))}
+          </motion.div>
         </div>
+
+        {/* Content Card */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 0.8,
+            delay: index * 0.15,
+            ease: [0.16, 1, 0.3, 1]
+          }}
+          viewport={{ once: true }}
+          className="flex-1 group"
+        >
+          <div
+            className={`relative overflow-hidden transition-all duration-500 ${darkMode
+              ? "bg-gradient-to-br from-white/[0.03] to-white/[0.01] hover:from-white/[0.06] hover:to-white/[0.02]"
+              : "bg-gradient-to-br from-white to-gray-50/50 hover:from-white hover:to-white"
+              }`}
+            style={{
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              border: `1px solid ${darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)"
+                }`,
+            }}
+          >
+            {/* Top Gradient Bar */}
+            <div
+              className={`h-1 ${index === 0
+                ? "bg-gradient-to-r from-green-400 to-emerald-400"
+                : index === 1
+                  ? "bg-gradient-to-r from-blue-400 to-cyan-400"
+                  : index === 2
+                    ? "bg-gradient-to-r from-purple-400 to-pink-400"
+                    : "bg-gradient-to-r from-orange-400 to-red-400"
+                }`}
+            />
+
+            <div className="p-8 sm:p-10">
+              {/* Header */}
+              <div className="mb-8">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  {/* Company & Status */}
+                  <div className="flex-1">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-3 mb-3"
+                    >
+                      <h4
+                        className={`text-sm font-medium ${darkMode ? "text-white/70" : "text-gray-700"
+                          }`}
+                      >
+                        {experience.companyName}
+                      </h4>
+                      {index === 0 && (
+                        <div
+                          className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full ${darkMode
+                            ? "bg-green-400/10 text-green-400"
+                            : "bg-green-50 text-green-600"
+                            }`}
+                        >
+                          <div className="w-1 h-1 rounded-full bg-green-400 animate-pulse" />
+                          <span className="text-[9px] uppercase tracking-wider font-medium">
+                            En cours
+                          </span>
+                        </div>
+                      )}
+                    </motion.div>
+
+                    {/* Title */}
+                    <motion.h3
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      viewport={{ once: true }}
+                      className={`text-2xl sm:text-3xl font-light leading-tight mb-2 ${darkMode
+                        ? "text-white/95 group-hover:text-white"
+                        : "text-gray-900"
+                        }`}
+                    >
+                      {experience.title}
+                    </motion.h3>
+                  </div>
+
+                  {/* Duration Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className={`flex-shrink-0 px-3 py-1.5 rounded-full text-[10px] uppercase tracking-[0.2em] font-medium ${darkMode
+                      ? "bg-white/5 text-white/50"
+                      : "bg-gray-100 text-gray-500"
+                      }`}
+                  >
+                    {experience.date}
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Missions / Points */}
+              <div className="space-y-3">
+                {experience.points.map((point: string, i: number) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.4 + index * 0.1 + i * 0.05,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3 group/point"
+                  >
+                    {/* Icon */}
+                    <div
+                      className={`mt-1.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-all ${darkMode
+                        ? "bg-white/5 group-hover/point:bg-white/10"
+                        : "bg-gray-100 group-hover/point:bg-gray-200"
+                        }`}
+                    >
+                      <svg
+                        className={`w-3 h-3 transition-colors ${darkMode
+                          ? "text-white/30 group-hover/point:text-white/50"
+                          : "text-gray-400 group-hover/point:text-gray-600"
+                          }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Text */}
+                    <p
+                      className={`text-sm sm:text-base leading-relaxed transition-colors ${darkMode
+                        ? "text-white/50 group-hover/point:text-white/70"
+                        : "text-gray-600 group-hover/point:text-gray-900"
+                        }`}
+                    >
+                      {point}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Tags / Technologies (si disponibles) */}
+              {experience.tags && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="mt-6 pt-6 border-t border-white/5"
+                >
+                  <div className="flex flex-wrap gap-2">
+                    {experience.tags.map((tag: string, i: number) => (
+                      <span
+                        key={i}
+                        className={`px-3 py-1 text-[10px] uppercase tracking-wider font-medium rounded-full ${darkMode
+                          ? "bg-white/5 text-white/40"
+                          : "bg-gray-100 text-gray-500"
+                          }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </div>
+
+            {/* Bottom Accent Line */}
+            <motion.div
+              className={`h-px ${darkMode
+                ? "bg-white/5 group-hover:bg-white/10"
+                : "bg-gray-200 group-hover:bg-gray-300"
+                } transition-colors duration-500`}
+            />
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   );
@@ -125,73 +297,240 @@ const ExperienceItem = ({
 
 const Experience = () => {
   const { darkMode } = useDarkMode();
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className={`relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${darkMode ? 'bg-black' : 'bg-gray-50'
-      }`}>
-      {/* Fond subtil en mode clair uniquement */}
-      {!darkMode && (
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="bg-[url('/noise.svg')] opacity-[0.02] absolute inset-0" />
-          <div className="bg-[url('/grid.svg')] bg-center opacity-[0.03] absolute inset-0" />
-          <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent absolute inset-0" />
-        </div>
-      )}
+    <section
+      ref={sectionRef}
+      className={`relative w-full min-h-screen py-24 sm:py-32 px-6 sm:px-12 transition-colors duration-700 overflow-hidden ${darkMode ? "bg-black" : "bg-transparent"
+        }`}
+    >
+      {/* Animated Background Elements */}
+      <motion.div
+        style={{ y: backgroundY }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div
+          className={`absolute top-1/4 -right-64 w-96 h-96 rounded-full blur-[120px] ${darkMode ? "bg-blue-500/[0.03]" : "bg-blue-500/[0.05]"
+            }`}
+        />
+        <div
+          className={`absolute bottom-1/4 -left-64 w-96 h-96 rounded-full blur-[120px] ${darkMode ? "bg-purple-500/[0.03]" : "bg-purple-500/[0.05]"
+            }`}
+        />
+      </motion.div>
 
-      {/* Contenu */}
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header élégant */}
-        <div className="mb-20">
+        {/* Header Section */}
+        <div className="mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-center"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="text-center max-w-4xl mx-auto"
           >
-            {/* Badge de statut */}
-            <div className={`inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border transition-colors duration-500 ${darkMode
-              ? 'bg-white/5 border-white/10 text-white/70'
-              : 'bg-white border-gray-200 text-gray-600'
-              }`}>
-              <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-400/60' : 'bg-blue-500'
-                }`}>
-                <div className={`w-full h-full rounded-full animate-pulse ${darkMode ? 'bg-blue-400/40' : 'bg-blue-500/40'
-                  }`} />
+            {/* Animated Badge */}
+            <div className="mb-8 flex justify-center">
+              <div className="inline-flex items-center gap-3 px-4 py-2">
+                <motion.div
+                  className="flex gap-1.5"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className={`w-1.5 h-1.5 rounded-full ${darkMode ? "bg-white/20" : "bg-black/20"
+                        }`}
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.3, 1, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                      }}
+                    />
+                  ))}
+                </motion.div>
+                <span
+                  className={`text-[10px] uppercase tracking-[0.3em] font-medium ${darkMode ? "text-white/40" : "text-gray-400"
+                    }`}
+                >
+                  Parcours Professionnel
+                </span>
               </div>
-              <span className="text-sm font-medium tracking-wider uppercase">Mon Parcours</span>
             </div>
 
-            {/* Titre principal */}
-            <h2 className={`text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-none mb-8 ${darkMode ? 'text-white/95' : 'text-gray-900'
-              }`}>
+            {/* Main Title */}
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className={`text-6xl sm:text-7xl lg:text-8xl font-light tracking-tighter leading-[0.95] mb-8 ${darkMode ? "text-white" : "text-black"
+                }`}
+            >
               Expériences
               <br />
-              <span className={`${darkMode ? 'text-white/40' : 'text-gray-400'}`}>professionnelles</span>
-            </h2>
+              <span className={darkMode ? "text-white/30" : "text-black/30"}>
+                & Missions
+              </span>
+            </motion.h2>
 
-            {/* Sous-titre */}
-            <p className={`text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-light ${darkMode ? 'text-white/60' : 'text-gray-600'
-              }`}>
-              Un aperçu de mon parcours professionnel et des projets
-              qui ont façonné mon expertise.
-            </p>
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className={`text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto ${darkMode ? "text-white/40" : "text-gray-500"
+                }`}
+            >
+              De la transformation digitale au développement mobile et IA,
+              découvrez mon parcours et les missions qui ont façonné mon expertise.
+            </motion.p>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="mt-12 flex items-center justify-center gap-12"
+            >
+              <div className="text-center">
+                <div
+                  className={`text-3xl font-light mb-1 ${darkMode ? "text-white" : "text-black"
+                    }`}
+                >
+                  {experiences.length}+
+                </div>
+                <div
+                  className={`text-[10px] uppercase tracking-[0.2em] ${darkMode ? "text-white/30" : "text-gray-400"
+                    }`}
+                >
+                  Expériences
+                </div>
+              </div>
+              <div
+                className={`w-px h-12 ${darkMode ? "bg-white/10" : "bg-gray-200"
+                  }`}
+              />
+              <div className="text-center">
+                <div
+                  className={`text-3xl font-light mb-1 ${darkMode ? "text-white" : "text-black"
+                    }`}
+                >
+                  3+
+                </div>
+                <div
+                  className={`text-[10px] uppercase tracking-[0.2em] ${darkMode ? "text-white/30" : "text-gray-400"
+                    }`}
+                >
+                  Années
+                </div>
+              </div>
+              <div
+                className={`w-px h-12 ${darkMode ? "bg-white/10" : "bg-gray-200"
+                  }`}
+              />
+              <div className="text-center">
+                <div
+                  className={`text-3xl font-light mb-1 ${darkMode ? "text-white" : "text-black"
+                    }`}
+                >
+                  5+
+                </div>
+                <div
+                  className={`text-[10px] uppercase tracking-[0.2em] ${darkMode ? "text-white/30" : "text-gray-400"
+                    }`}
+                >
+                  Secteurs
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Decorative Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 1.5, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-16"
+            style={{ originX: 0.5 }}
+          >
+            <div
+              className={`h-px ${darkMode
+                ? "bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                : "bg-gradient-to-r from-transparent via-gray-200 to-transparent"
+                }`}
+            />
           </motion.div>
         </div>
 
-        {/* Timeline des expériences */}
-        <div className="space-y-20 lg:space-y-24">
-          {experiences.map((exp, idx) => (
-            <ExperienceItem key={idx} experience={exp} index={idx} />
+        {/* Timeline */}
+        <div className="relative">
+          {experiences.map((experience, index) => (
+            <ExperienceCard
+              key={`experience-${index}`}
+              experience={experience}
+              index={index}
+              isLast={index === experiences.length - 1}
+            />
           ))}
         </div>
 
-        {/* Décoration finale */}
-        <div className="mt-20">
-          <div className={`h-px ${darkMode
-            ? 'bg-gradient-to-r from-transparent via-white/10 to-transparent'
-            : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
-            }`} />
-        </div>
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mt-24 text-center"
+        >
+          <div
+            className={`h-px mb-12 ${darkMode
+              ? "bg-gradient-to-r from-transparent via-white/10 to-transparent"
+              : "bg-gradient-to-r from-transparent via-gray-200 to-transparent"
+              }`}
+          />
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className={`inline-flex items-center gap-2 px-8 py-4 text-sm uppercase tracking-[0.15em] font-medium transition-colors ${darkMode
+              ? "bg-white text-black hover:bg-white/90"
+              : "bg-black text-white hover:bg-gray-900"
+              }`}
+          >
+            Travaillons ensemble
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

@@ -30,9 +30,13 @@ import {
   threejs,
 } from "../assets";
 
+import vibefyImg from "../assets/projects/Vibefy1.jpg";
+import reminderImg from "../assets/projects/reminderapp.png";
+
+
+
 export const navLinks: TNavLink[] = [
-  
-   {
+  {
     id: "about",
     title: "À propos",
   },
@@ -119,6 +123,7 @@ const technologies: TTechnology[] = [
     icon: docker,
   },
 ];
+
 const experiences: TExperience[] = [
   {
     title: "Développeur Flutter & Firebase",
@@ -127,9 +132,9 @@ const experiences: TExperience[] = [
     iconBg: "#383E56",
     date: "Fév. 2024 - Présent",
     points: [
-      "Développement d’une application mobile de gestion des réservations VTC.",
-      "Conception de l’interface avec Figma et intégration complète avec Flutter.",
-      "Connexion Firebase pour l’authentification, la gestion temps réel et la base de données.",
+      "Développement d'une application mobile de gestion des réservations VTC.",
+      "Conception de l'interface avec Figma et intégration complète avec Flutter.",
+      "Connexion Firebase pour l'authentification, la gestion temps réel et la base de données.",
       "Utilisation de ClickUp pour le suivi de projet en équipe."
     ],
   },
@@ -142,7 +147,7 @@ const experiences: TExperience[] = [
     points: [
       "Analyse des besoins et cartographie des processus avec Lucidchart.",
       "Implémentation de solutions digitales personnalisées pour les MPME.",
-      "Création de sites WordPress et d’outils d’optimisation adaptés au terrain.",
+      "Création de sites WordPress et d'outils d'optimisation adaptés au terrain.",
     ],
   },
   {
@@ -153,7 +158,7 @@ const experiences: TExperience[] = [
     date: "Mai 2023 - Juil. 2023",
     points: [
       "Diagnostic des activités de plusieurs MPME.",
-      "Recommandations de plans d’action digitaux et organisationnels.",
+      "Recommandations de plans d'action digitaux et organisationnels.",
       "Accompagnement des structures sur des outils simples (Word, Excel, etc.) pour améliorer leur productivité.",
     ],
   },
@@ -193,7 +198,6 @@ const experiences: TExperience[] = [
   },
 ];
 
-
 const testimonials: TTestimonial[] = [
   {
     testimonial:
@@ -221,11 +225,13 @@ const testimonials: TTestimonial[] = [
   },
 ];
 
+// ✨ PROJETS AVEC CATÉGORIES
 const projects: TProject[] = [
+  // 🌐 APPLICATIONS WEB
   {
     name: "MiniERP.BJ+",
     description:
-      " ERP local simplifié destiné aux TPE et boutiques de quartier, pour une gestion facile du stock, des ventes, des clients et des reçus. ",
+      "ERP local simplifié destiné aux TPE et boutiques de quartier, pour une gestion facile du stock, des ventes, des clients et des reçus.",
     tags: [
       {
         name: "react",
@@ -242,48 +248,166 @@ const projects: TProject[] = [
     ],
     image: carrent,
     sourceCodeLink: "https://github.com/adjovichancel98/MonPortfolio.git",
+    category: 'web', // ✨ CATÉGORIE WEB
   },
   {
-    name: "Vibefy",
+    name: "Portfolio 3D",
     description:
-      "un redesign de l'application Spotify avec des fonctionnalités améliorées pour une expérience utilisateur optimale.",
+      "Portfolio interactif moderne avec React, Three.js, animations avancées, glassmorphism et design minimaliste.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "threejs",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: tripguide,
+    sourceCodeLink: "https://github.com/adjovichancel98/MonPortfolio.git",
+    live_demo_link: "https://chancel-adjovi-portfolio.vercel.app",
+    category: 'web', // ✨ CATÉGORIE WEB
+  },
+
+  // 📱 APPLICATIONS MOBILE
+  {
+    name: "Vibefy",
+    description:
+      "Redesign de Spotify avec visualisations audio en temps réel, intégration Spotify SDK et interface utilisateur innovante.",
+    tags: [
+      {
+        name: "flutter",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "spotify-sdk",
+        color: "green-text-gradient",
+      },
+      {
+        name: "audio-viz",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: vibefyImg,
+    sourceCodeLink: "https://github.com/adjovichancel98/VibefyAPP",
+    category: 'mobile', // ✨ CATÉGORIE MOBILE
+  },
+  {
+    name: "ÉpargneTché",
+    description:
+      "Application d'épargne pour les marchés africains avec système de vérification vidéo des dépôts physiques d'argent.",
+    tags: [
+      {
+        name: "flutter",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "firebase",
+        color: "green-text-gradient",
+      },
+      {
+        name: "video",
         color: "pink-text-gradient",
       },
     ],
     image: jobit,
     sourceCodeLink: "https://github.com/",
+    category: 'mobile', // ✨ CATÉGORIE MOBILE
   },
   {
-    name: "Trip Guide",
+    name: "Reminder App",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "Application de rappels avec timeline visualizations innovantes et indicateurs de progression circulaires.",
     tags: [
       {
-        name: "nextjs",
+        name: "flutter",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "animations",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "widgets",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: reminderImg,
+    sourceCodeLink: "https://github.com/",
+    category: 'mobile', // ✨ CATÉGORIE MOBILE
+  },
+
+  // 📊 PROJETS DATA ANALYTICS
+  {
+    name: "Dashboard Excel Avancé",
+    description:
+      "Tableau de bord interactif avec pivot tables, graphiques dynamiques et formules avancées pour analyse business.",
+    tags: [
+      {
+        name: "excel",
+        color: "green-text-gradient",
+      },
+      {
+        name: "power-query",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "dashboard",
         color: "pink-text-gradient",
       },
     ],
     image: tripguide,
     sourceCodeLink: "https://github.com/",
+    category: 'data', // ✨ CATÉGORIE DATA
+  },
+  {
+    name: "Analyse SQL E-commerce",
+    description:
+      "Analyse complète de données e-commerce : tendances ventes, segmentation clients et KPIs business.",
+    tags: [
+      {
+        name: "sql",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "postgresql",
+        color: "green-text-gradient",
+      },
+      {
+        name: "analytics",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: carrent,
+    sourceCodeLink: "https://github.com/",
+    category: 'data', // ✨ CATÉGORIE DATA
+  },
+  {
+    name: "Power BI Sales Dashboard",
+    description:
+      "Rapport de ventes interactif avec visualisations avancées, drill-down, filtres dynamiques et insights automatiques.",
+    tags: [
+      {
+        name: "powerbi",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "dax",
+        color: "green-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: tripguide,
+    sourceCodeLink: "https://github.com/",
+    category: 'data', // ✨ CATÉGORIE DATA
   },
 ];
 

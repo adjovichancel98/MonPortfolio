@@ -26,6 +26,8 @@ export type TProject = {
   }[];
   image: string;
   sourceCodeLink: string;
+   live_demo_link?: string;
+  category?: 'mobile' | 'web' | 'data'; 
 } & Required<Pick<TCommonProps, "name">>;
 
 export type TTechnology = Required<Omit<TCommonProps, "title">>;

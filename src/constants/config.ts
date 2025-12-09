@@ -42,7 +42,7 @@ export const config: TConfig = {
   html: {
     title: "CHΛNCΞL — AI, Code & Vision",
     fullName: "Chancel Adjovi",
-    email: "chancel.adjovi@mail.com",
+    email: "chancel.adjovi@epitech.eu",
   },
   hero: {
     name: "Chancel ADJOVI",
