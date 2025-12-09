@@ -34,7 +34,7 @@ const Hero = () => {
   const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
 
     if (isTyping) {
       const currentRole = roles[currentRoleIndex];
@@ -105,8 +105,8 @@ const Hero = () => {
         <div className="max-w-[1400px] mx-auto px-6 sm:px-12 py-6">
           <motion.div
             className={`relative backdrop-blur-2xl transition-all duration-500 overflow-hidden ${darkMode
-                ? 'bg-black/40 border border-white/10'
-                : 'bg-white/40 border border-gray-200/50'
+              ? 'bg-black/40 border border-white/10'
+              : 'bg-white/40 border border-gray-200/50'
               }`}
             style={{
               borderRadius: '100px',
@@ -179,8 +179,8 @@ const Hero = () => {
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className={`relative px-4 py-2 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300 group ${darkMode
-                        ? 'text-white/60 hover:text-white'
-                        : 'text-gray-600 hover:text-black'
+                      ? 'text-white/60 hover:text-white'
+                      : 'text-gray-600 hover:text-black'
                       }`}
                   >
                     <span className="flex items-center gap-2 relative z-10">
